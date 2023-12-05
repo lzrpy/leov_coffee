@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeoV Coffee - Cadastrar Endereço </title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/confirmar_pedido.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon.ico' %}">
+
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <header>
+    <nav class="navbar navbar-dark bg-dark fixed-top" style = "box-shadow: 1px 2px 10px rgb(51, 51, 51);">
+        <div class="container-fluid">
+          <a class="navbar-brand px-1 mt-2 mb-2" href="http://127.0.0.1:8000/" ><img src="{%static 'images/leov_logo_nav.png'%}" width = 80% alt="Logo SkyBards"></a>
+          <ul class="navbar-nav ms-auto">
+            <!-- Badge -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'carrinho' %}">
+                <span class="badge badge-pill bg-danger"> {{ ordem.itens_carrinho }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2 mr-5 " viewBox="0 0 16 16">
+                  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler-icon mr-2 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></button>
+          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu de Navegação</h5>
+              <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="avatar_user d-grid gap-5 d-md-flex mx-auto mt-5">
+              {% if user.is_authenticated %}
+                <a href="{% url 'minhaConta' %}"><img src="{%static 'images/avatar_user.png'%}" class="rounded-circle" style="width: 90%;"
+                  alt="User" /> </a>
+              {% else %}
+                <a href="{% url 'userLogin' %}"><img src="{%static 'images/avatar_user.png'%}" class="rounded-circle" style="width: 90%;"
+                  alt="User" /> </a>
+              {% endif %}
+            </div>
+            <a class="nav-link mx-auto" href="{% url 'minhaConta' %}">
+              {% if user.is_authenticated %}
+                <p> Olá, {{ user.username }}</p>
+              {% else %}
+                <a class="nav-link mx-auto mt-1" href="auth/login"><p> Faça o login </p></a>
+              {% endif %} </a>
+
+
+            </a>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-center fs-5 mt-5 ">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'produtos' %}">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contato.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sobre.html">Sobre</a>
+                </li>
+                <form class="mx-1 mx-md-4" action="{% url 'userLogout' %}" method="POST">
+                  {% csrf_token %}
+
+                  <button class = button_logout>
+                  <li class="nav-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 15 15">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                      </svg>
+                  </li>
+                </button>
+                </form>
+                <img class = "mx-5" src="{%static 'images/letter_leov_home.png'%}" width = 80% alt="Logo JunVie">
+            </div>
+          </div>
+        </div>
+      </nav>
+  </header>
+
+  <div class="container text-white mt-5">
+    <div class="py-5 text-center text-white">
+      <p class="lead mt-5 fw-bold fs-3 text-bg-primary">Cadastrar endereço</p>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-8 order-md-1">
+          <div class="row">
+            <div id="info-envio" class="d-block my-3">
+            <div class="col-md-5 mb-3">
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  <form action="{% url 'cadastrarEndereço' %}" method="POST">
+    {% csrf_token %}
+    <div class="d-block my-3">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-name">Logradouro</label>
+          <input type="text" class="form-control" name="input_logradouro" maxlength="100">
+          <small class="text-muted">Logradouro</small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="cc-number">Número</label>
+        <input type="text" class="form-control cc-number-input w-25" name="input_numero"  maxlength="4">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="cc-expiration">Complemento</label>
+        <input type="text" class="form-control cc-expiry-input" name="input_complemento"  maxlength="50">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="cc-expiration">Bairro</label>
+        <input type="text" class="form-control cc-expiry-input" name="input_bairro"  maxlength="50">
+      </div>
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <label for="cc-expiration">Cidade</label>
+        <input type="text" class="form-control cc-expiry-input" name="input_cidade"  maxlength="50">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="cc-expiration">Estado</label>
+        <input type="text" class="form-control cc-cvc-input" name="input_estado" maxlength="50">
+      </div>
+    </div>
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
+  </form>
+</div>
+</div>
+  
+    
+</body>
+</html>

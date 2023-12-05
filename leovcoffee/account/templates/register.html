@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeoV Coffee - Cadastrar-se</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon.ico' %}">
+
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="{%static 'js/jquery.mask.min.js'%}"></script>
+  <script>
+    $(document).ready(function(){    
+      $('#input_tel').mask('(00) 00000-0000');
+      $('#input_cpf').mask('000.000.000-00', {reverse: true});
+    });
+  </script>
+
+  <section class="vh-100" style="background-color: #212529;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                  <a href="http://127.0.0.1:8000/"><img class = "button_left ml-5 mx-5" src="{%static 'images/left_button.png'%}" alt=""></a>
+                  <p class = "text_home ml-5"> Voltar para Home </p>
+
+                  {% for message in messages %}
+                  <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Cadastrar-se</p>
+                  <div class="form-check d-flex justify-content-center mb-5 mr-3">
+                    <label class="form-check-label" for="form2Example3">
+                      Já possui um cadastro? <a href="{% url 'userLogin' %}">Faça seu Login</a>
+                    </label>
+                  </div>
+  
+                  <form class="mx-1 mx-md-4" action="{% url 'userRegister' %}" method="POST">
+                    {% csrf_token %}  
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="input_nome" class="form-control" name="input_nome" placeholder="Nome completo" minlength="10" maxlength="150" required />   
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="input_cpf" class="form-control" name="input_cpf" placeholder="CPF - Ex: 999.999.999-99" minlength="14"
+                           maxlength="14" required />
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="date" id="input_data-nascimento" class="form-control" name="input_data-nascimento" placeholder="Insira sua data de nascimento" required/>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="input_username" class="form-control" name="input_username" placeholder="Nome de usuário" minlength="10" maxlength="50" required/>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="input_email" class="form-control" name="input_email" placeholder="E-mail" minlength="8" maxlength="40" required/>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="tel" id="input_tel" class="form-control" name="input_tel" placeholder="Número de telefone" minlength="6" maxlength="15" required />
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="input_senha" class="form-control" name="input_senha" placeholder="Senha" required minlength="6" maxlength="15" />
+                      </div>
+                    </div>
+  
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input class="form-check-input me-5" type="checkbox" value="" id="form2Example3c" required />
+                      <label class="form-check-label" for="form2Example3">
+                        Eu aceito os <a href="termos-de-uso.html">Termos de Uso</a>
+                      </label>
+                    </div>
+  
+
+                    <div class="d-flex justify-content-center mx-4">
+                      <button type="input" class="btn_cadastrar btn btn-primary btn-lg">Cadastrar</button>
+                    </div>
+  
+                  </form>
+              
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                  <img src="{%static 'images/vector_drinking-coffee.svg'%}"
+                    class="img-fluid" alt="Sample image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

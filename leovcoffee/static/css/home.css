@@ -1,0 +1,95 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+
+.offcanvas-body {
+    overflow-y: hidden !important;
+}
+
+.navbar-toggler-icon {
+    border: 0;
+}
+
+.offcanvas-title {
+    font-family: 'Nunito Sans' !important;       
+}
+
+.nav-link {
+    font-family: 'Nunito Sans' !important;    
+}
+
+#offcanvasNavbarLabel {
+    font-weight: 600;
+}
+
+.offcanvas-body .nav-link:hover {
+    color: #3A93FD !important;   
+}
+
+.img_logo {
+    height: 400% !important;
+}
+
+.bg-image {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+.card-img-overlay {
+    margin-top: 20rem;
+}
+
+.card-img-overlay .title {
+    color: #ffffff;  
+    font-family: Nunito Sans;
+    text-transform: uppercase;
+}
+
+.card-img-overlay .title_bold {
+    color: #ffffff;  
+    text-transform: uppercase;
+    font-family: Nunito Sans;
+    font-weight: bold;
+}
+
+.btn_compre-agora {
+    border: 0;
+    border-radius: 0.5rem;
+    background: #27262C; 
+    height: 3.5rem;  
+}
+
+.btn_compre-agora:hover {
+    border-radius: 0.5rem;
+    background: #121214;    
+}
+
+.text_conheca {
+    color: #ffffff !important;
+    animation: ease;
+    transition: 0.2s ease-out;
+    font-family: Nunito Sans;
+}
+
+.text_conheca:hover {
+    color: #ffffff !important;
+    font-weight: 600;
+    text-shadow: 0 0 10px #006eff, 0 0 20px #8b00fd, 0 0 40px #ffffff;
+    text-decoration: none;
+}
+
+.button_logout {
+    background: transparent !important;
+    border: 0;
+    color: rgb(255, 255, 255);
+}
+
+.button_logout:hover {
+    background: transparent !important;
+    border: 0;
+    color: #3A93FD;
+}
+
+
+
+

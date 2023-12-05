@@ -1,0 +1,43 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+
+
+.row {
+    color: black !important;
+}
+
+.bg-image {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+label, p { 
+    font-family: Nunito Sans;
+}
+
+.form-check-input {
+    margin-right: 13rem !important;
+}
+
+.button_left {
+    position: relative;
+    top:0rem;
+    opacity: 0.85;
+    animation: all;
+    transition: 0.3s;
+}
+
+.button_left:hover {
+    position: relative;
+    opacity: 1;
+    animation: all;
+    transition: 0.3s;
+}
+
+.text_home {
+    position: relative;
+    bottom:2.5rem;
+    margin-left: 7rem !important;
+    color: #000000;
+}

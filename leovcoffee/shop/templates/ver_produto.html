@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ produto.nome }} </title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/ver_produto.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon.ico' %}">
+
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+  <header>
+    <nav class="navbar navbar-dark bg-dark fixed-top" style = "box-shadow: 1px 2px 10px rgb(51, 51, 51);">
+        <div class="container-fluid">
+          <a class="navbar-brand px-1 mt-2 mb-2" href="http://127.0.0.1:8000/" ><img src="{%static 'images/leov_logo_nav.png'%}" width = 80% alt="Logo SkyBards"></a>
+          <ul class="navbar-nav ms-auto">
+            <!-- Badge -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'carrinho' %}">
+                <span class="badge badge-pill bg-danger"> {{ itensCarrinho }} </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2 mr-5 " viewBox="0 0 16 16">
+                  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler-icon mr-2 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></button>
+          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu de Navegação</h5>
+              <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="avatar_user d-grid gap-5 d-md-flex mx-auto mt-5">
+              {% if user.is_authenticated %}
+                <a href="{% url 'minhaConta' %}"><img src="{%static 'images/avatar_user.png'%}" class="rounded-circle" style="width: 90%;"
+                  alt="User" /> </a>
+              {% else %}
+                <a href="{% url 'userLogin' %}"><img src="{%static 'images/avatar_user.png'%}" class="rounded-circle" style="width: 90%;"
+                  alt="User" /> </a>
+              {% endif %}
+            </div>
+            <a class="nav-link mx-auto" href="{% url 'minhaConta' %}">
+              {% if user.is_authenticated %}
+                <p class = "ml-4"> Olá, {{ user.username }}</p>
+                <p class="text-bg-primary rounded p-1"> Acessar minha conta </p>
+              {% else %}
+                <a class="nav-link mx-auto mt-1" href="auth/login"><p> Faça o login </p></a>
+              {% endif %} </a>
+
+
+            </a>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-center fs-5 mt-5 ">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="http://127.0.0.1:8000/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'produtos' %}">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contato.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sobre.html">Sobre</a>
+                </li>
+                <form class="mx-1 mx-md-4" action="{% url 'userLogout' %}" method="POST">
+                  {% csrf_token %}
+
+                  <button class = button_logout>
+                  <li class="nav-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 15 15">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                      </svg>
+                  </li>
+                </button>
+                </form>
+                <img class = "mx-5" src="{%static 'images/letter_leov_home.png'%}" width = 80% alt="Logo JunVie">
+            </div>
+          </div>
+        </div>
+      </nav>
+  </header>
+
+
+<!-- Product section-->
+<section class="py-5 mt-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mt-5 mb-1 mb-md-0" src="{{ produto.imagem.url }}" width="500" height="330" alt="..." /> 
+              <p class="text-secondary mt-2 font-italic"> * Imagem meramente ilustrativa </p>
+            </div>
+            <div class="col-md-6 text-white">
+                <div class="small mb-1 text-primary">ID: {{ produto.id_produto }}</div>
+                <h1 class="display-5 fw-bolder">{{ produto.nome }}</h1>
+                <p class="fs-6"> Avaliação do Produto: {{ produto.pegar_nota }} / 5,0 </p>
+                <div class="fs-5 mb-5">
+                    <span class = text-primary >R$ {{ produto.valor }}</span>
+                </div>
+                <p class="lead"> {{ produto.descricao }}  </p>
+                <div class="d-flex">
+                  <button data-product="{{ produto.id }}" data-action="add" class="btn update-cart btn-outline-primary flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                      Adicionar ao carrinho
+                  </button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+      {% if request.user.is_authenticated %}
+      <div class="bg-dark rounded py-5 mb-5 border border-primary">
+        <h3 class="fw-bolder text-white mb-5 text-center px-5"> Avalie este produto </h2>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="text-center mb-3 text-white">
+          <label class="mr-2"> Nota </label>
+          <select name="notas" class= "rounded bg-dark text-white">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="text-center mb-3">
+          <textarea class= "rounded bg-dark text-white border-primary" name="mensagem" placeholder="Sua mensagem" rows="5" cols="35"></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-primary"> Enviar </button>
+        </div>
+      </form>
+      </div>
+    {% endif %}
+        <h2 class="fw-bolder text-black mb-4 text-center"> O que nossos clientes acharam ? </h2>
+        <div class="row gx-4 gx-lg-1 row-cols-1 row-cols-md-1 row-cols-xl-1 ">
+            <div class="col mb-5">
+              {% for feedback in produto.feedbacks.all %} 
+                <div class = "background_avaliacao px-4 py-4 bg-secondary rounded mb-4 mt-4">
+                  <strong> Data da avaliação: </strong> {{ feedback.data_criacao|date:"d-m-Y" }} <br>
+                  <strong> Usuário: </strong> {{ feedback.criado_por.nome }} <br>
+                  <strong> Nota: </strong> <span class = "text-primary"> {{ feedback.nota }} </span> <br>
+                  <strong> Mensagem: </strong> {{ feedback.mensagem }}
+                </div>
+              {% endfor %}
+                
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <footer class="py-4 mt-auto">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto"><div class="small m-0 text-white mt-2">Copyright &copy; SkyBards 2023</div>
+            <p class="small m-0 text-white mt-2" href="#!">Endereço: Rua 123 N°55, Bairro 003, MG  - Brasil</p>
+            </div>
+            <div class="col-auto">
+            <a class="link-light small" href="#!">Privacidade</a>
+            <span class="text-white mx-1">&middot;</span>
+            <a class="link-light small ml-3" href="#!">Termos</a>
+            <span class="text-white mx-1">&middot;</span>
+            <a class="link-light small ml-3" href="#!">Contato</a>
+        
+            </div>
+        </div>
+    </div>
+    </footer>
+
+  <script type="text/javascript" src="{% static 'js/carrinho.js' %}"></script>
+  <script type="text/javascript">
+    var usuario = '{{ request.user.username }}'
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(
+              name.length + 1));
+            break;
+          } 
+        }
+      }
+      return cookieValue
+    }
+    var csrftoken = getCookie('csrftoken');
+  </script>
+
+</body>
+</html>

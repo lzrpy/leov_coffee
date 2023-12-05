@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+
+
+body {
+    font-family: 'Nunito Sans' !important;
+}
+
+.offcanvas-body {
+    overflow-y: hidden !important;
+}
+
+.navbar-toggler-icon {
+    border: 0;
+}
+
+.offcanvas-title {
+    font-family: 'Nunito Sans' !important;       
+}
+
+.nav-link {
+    font-family: 'Nunito Sans' !important;    
+}
+
+#offcanvasNavbarLabel {
+    font-weight: 600;
+}
+
+.offcanvas-body .nav-link:hover {
+    color: #3A93FD !important;   
+}
+
+.img_logo {
+    height: 400% !important;
+}
+
+.col-auto .link-light:hover {
+    color: #3A93FD !important;
+    animation: all;
+    transition: 0.3s;
+}
+
+.button_logout {
+    background: transparent !important;
+    border: 0;
+    color: rgb(255, 255, 255);
+}
+
+.button_logout:hover {
+    background: transparent !important;
+    border: 0;
+    color: #3A93FD;
+}
+

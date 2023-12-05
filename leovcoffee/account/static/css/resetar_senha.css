@@ -1,0 +1,15 @@
+html {
+    overflow: hidden !important;
+    background-color: #232323;
+}
+
+.card {
+    margin-top: 25vh !important;
+    background-color: #393838;
+    color: #ffffff;
+}
+
+form {
+    background-color: #232323;
+
+}
