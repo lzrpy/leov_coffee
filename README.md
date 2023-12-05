@@ -1,0 +1,1 @@
+Projeto de um sistema web de Cafeteria, destinado à Faculdade. Este projeto é sobre um sistema web de cafeteria, onde os usuários poderão fazer seus pedidos e receber no conforto de sua casa ou cancelar o pedido na cafeteria.
